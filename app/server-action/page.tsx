@@ -1,5 +1,5 @@
-import UserList from "@/components/UserList";
-import { createUser, getAllUsers } from "@/db/db";
+import { UserList } from "@/components/UserList";
+import { createUser } from "@/db/db";
 import { revalidatePath } from "next/cache";
 
 async function addUser(formData: FormData) {
@@ -40,13 +40,12 @@ async function UserAddForm() {
 }
 
 export default async function ServerActionPage() {
-  const users = await getAllUsers();
   return (
     <div className="flex flex-col items-center justify-center h-full">
       <h1 className="text-4xl font-bold">Server Action Page</h1>
 
       <div className="flex justify-around">
-        <UserList users={users} />
+        <UserList />
         <UserAddForm />
       </div>
     </div>

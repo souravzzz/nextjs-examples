@@ -1,10 +1,8 @@
-import { Post } from "@prisma/client";
+import { getAllPosts } from "@/db/db";
 
-type PostListProps = {
-  posts: Post[];
-};
+export async function PostList() {
+  const posts = await getAllPosts();
 
-export default function PostList({ posts }: PostListProps) {
   return (
     <div className="mt-8 w-1/2 bg-blue-50 flex flex-col items-center justify-center">
       <h2 className="text-2xl font-bold">Posts</h2>

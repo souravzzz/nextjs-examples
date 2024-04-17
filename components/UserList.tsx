@@ -1,10 +1,8 @@
-import { User } from "@prisma/client";
+import { getAllUsers } from "@/db/db";
 
-type UserListProps = {
-  users: User[];
-};
+export async function UserList() {
+  const users = await getAllUsers();
 
-export default function UserList({ users }: UserListProps) {
   return (
     <div className="mt-8 w-1/2 bg-red-50 flex flex-col items-center justify-center">
       <h2 className="text-2xl font-bold">Users</h2>

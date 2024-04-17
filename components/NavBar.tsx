@@ -6,6 +6,7 @@ const navBarItems: NavBarItemProps[] = [
   { href: "/server-component", text: "Server Component" },
   { href: "/client-component", text: "Client Component" },
   { href: "/server-action", text: "Server Action" },
+  // { href: "/react-suspense", text: "React Suspense" },
 ];
 
 export function NavBar() {

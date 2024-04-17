@@ -1,3 +1,4 @@
+import UserList from "@/components/UserList";
 import { createUser, getAllUsers } from "@/db/db";
 import { revalidatePath } from "next/cache";
 
@@ -7,25 +8,6 @@ async function addUser(formData: FormData) {
   const email = formData.get("email") as string;
   await createUser({ name, email });
   revalidatePath("/server-action");
-}
-
-async function UsersList() {
-  const users = await getAllUsers();
-
-  return (
-    <div className="flex flex-col items-center justify-center h-full">
-      <div className="mt-8">
-        <h2 className="text-2xl font-bold">Users</h2>
-        <ul>
-          {users.map((user) => (
-            <li key={user.id}>
-              {user.name}: {user.email}
-            </li>
-          ))}
-        </ul>
-      </div>
-    </div>
-  );
 }
 
 async function UserAddForm() {
@@ -58,13 +40,14 @@ async function UserAddForm() {
 }
 
 export default async function ServerActionPage() {
+  const users = await getAllUsers();
   return (
     <div className="flex flex-col items-center justify-center h-full">
       <h1 className="text-4xl font-bold">Server Action Page</h1>
 
       <div className="flex justify-around">
+        <UserList users={users} />
         <UserAddForm />
-        <UsersList />
       </div>
     </div>
   );
